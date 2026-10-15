@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include "reader.h"
+
 
 using namespace std;
 
@@ -32,4 +34,8 @@ int main (int argc, char* argv[])
         return 1;
     }
 
+    Reader reader(k);
+    reader.read_the_file(filename);
+    cout << "success!" << endl;
+    return 0;
 }
