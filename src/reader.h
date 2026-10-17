@@ -30,6 +30,11 @@ class Reader {
     {
         return kgram_counts;
     }
+
+    const std::set<char>& get_alphabet() const
+    {
+        return alphabet;
+    }
 };
 
 #endif
