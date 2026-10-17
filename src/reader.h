@@ -25,6 +25,11 @@ class Reader {
     void process_text(); //
     double kgram_frequency(const std::string& kgram) const; // compute the kgram frequency, 1st component
     double conditional_probability (const std::string& kgram, char c, double alpha) const; //compute the conditional probability, 2nd Component
+    
+    const std::map<std::string, int>& get_kgram_counts() const 
+    {
+        return kgram_counts;
+    }
 };
 
 #endif

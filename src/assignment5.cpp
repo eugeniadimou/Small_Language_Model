@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include "reader.h"
+#include"generator.h"
 
 
 using namespace std;
@@ -36,6 +37,10 @@ int main (int argc, char* argv[])
 
     Reader reader(k);
     reader.read_the_file(filename);
-    cout << "success!" << endl;
+
+    Generator generator(reader, alpha, output_chars);
+    generator.generate();
+
+
     return 0;
 }
