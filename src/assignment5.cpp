@@ -41,6 +41,7 @@ int main (int argc, char* argv[])
     Generator generator(reader, alpha, output_chars);
     generator.generate();
 
+    cout << "\n";
 
     return 0;
 }

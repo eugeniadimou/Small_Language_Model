@@ -64,6 +64,12 @@ void Generator::generate()
 
         discrete_distribution<int> next_char_c_dist(char_probs.begin(), char_probs.end());
         char next_char = alphabet_vec[next_char_c_dist(gen)]; // Sample the next character c
+
+        cout << next_char; // Output c
+
+        current_w = current_w.substr(1) + next_char; // Set new w with the sampled character c
+
+        characters_printed++;
     }
 
 

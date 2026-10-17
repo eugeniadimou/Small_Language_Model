@@ -22,7 +22,7 @@ class Reader {
 
     Reader(int k); // k > 0
     void read_the_file(const std::string& filename); // read filename
-    void process_text(); //
+    void process_text();
     double kgram_frequency(const std::string& kgram) const; // compute the kgram frequency, 1st component
     double conditional_probability (const std::string& kgram, char c, double alpha) const; //compute the conditional probability, 2nd Component
     
