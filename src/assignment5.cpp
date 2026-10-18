@@ -10,9 +10,9 @@ int main (int argc, char* argv[])
 {
     double alpha = 0.0;
 
-    int k;
-    string filename;
-    int output_chars;
+    int k = 0;
+    string filename = "";
+    int output_chars = 0;
 
     if (argc == 4) 
     {
@@ -20,22 +20,36 @@ int main (int argc, char* argv[])
         filename = argv[2];
         output_chars = stoi(argv[3]);
     }
-    else if (argc == 6 && string(argv[1]) == "-a") 
+    else if (argc == 6 ) 
     {
+        if (string(argv[1]) != "-a")
+        {
+            cerr << "Unknown option'" << argv[1] << "'!" << endl;
+
+            return 1;
+        }
+
         alpha = stod(argv[2]);
 
+        if (alpha < 0.0)
+        {
+            cerr << "Alpha cannot be negative!" << endl;
+
+            return 1;
+        }
+        
         k = stoi(argv[3]);
         filename = argv[4];
         output_chars = stoi(argv[5]);
     }
-    else if (argc != 4 && argc != 6) 
+    else  
     {
         cerr << "Wrong number of arguments!" << endl;
 
         return 1;
     }
 
-    
+
     if (k > output_chars) 
     {
         cerr << "k cannot be grater than the number of output characters!" << endl;
