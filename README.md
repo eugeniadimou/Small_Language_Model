@@ -1,7 +1,7 @@
 # Small Language Model
 
 ## 1. Description
-In this project we built a **Small Language Model**. The program takes a text file, analyzes the $k$-gram frequencies and conditional probabilities ("learns" how to use letters and words), and generates its own text based on the statistical properties of the input data. The user can adjust the $k$-gram length, the number of output characters from the program, and the pseudocount '-$a$'.
+In this project we built a **Small Language Model**. The program takes a text file, analyzes the $k$-gram frequencies and conditional probabilities ("learns" how to use letters and words), and generates its own text based on the statistical properties of the input data. The user can adjust the $k$-gram length, the number of output characters from the program, and the pseudocount '-$\alpha$'.
 
 - 'src/': Contains the source files ('main.cpp', 'reader.cpp', 'reader.h', 'generator.cpp', 'generator.h')
 - 'Makefile': Describes how files depend on each other and how to build them.
@@ -28,6 +28,17 @@ a. Standard Text Generation
 ./slm k filename.txt output_characters
 ```
 
+Example
+```
+./slm 2 moby_dick.txt 50
+```
+
 b. Text Generation with Added Pseudocount alpha
 ```
 ./slm -a 0.01 k filename.txt output_characters
+```
+
+Example
+```
+./slm -a 0.01 2 moby_dick.txt 50
+```
