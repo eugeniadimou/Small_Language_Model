@@ -41,15 +41,33 @@ void Reader::read_the_file(const std::string& filename) // read filename, copy c
 void Reader::process_text() 
 {
 
-    if (text.length() < static_cast<size_t>(k)) 
+    if (text.length() <= static_cast<size_t>(k)) 
     {
-        throw runtime_error("k is too big for this file!");
+        throw runtime_error("k is too big for this file, or text is too short!");
     }
 
 
-    for (int i = 0; i <= text.length() - k; i++)  
+    for (size_t i = 0; i < text.length() - k; i++)  
     {
         string kgram = text.substr(i, k); //extract the k-grams
+
+        bool valid_kgram = true; // check if kgram contains ASCII chars
+        for (char ch : kgram) 
+        {
+            if (static_cast<unsigned char>(ch) > 127) 
+            {
+                valid_kgram = false;
+                break;
+            }
+        }
+
+        if (!valid_kgram) continue; // If it has non-ASCII char, move on
+
+        char c = text[i + k];
+        if (static_cast<unsigned char>(c) > 127) // If next char is not ASCII, move on
+        {
+            continue;
+        }
 
 
         for (char text_character : kgram) //create the alphabet Sigma
@@ -60,12 +78,9 @@ void Reader::process_text()
         total_kgrams++;  // total number of kgrams
         kgram_counts[kgram]++; // each kgram and its number of appeareances
 
-        if (i + k < text.length()) 
-        {
-            char c = text[i + k];
-            alphabet.insert(c);
-            c_follows_kgram[kgram][c]++;  // n(w, c)
-        }
+
+        alphabet.insert(c);
+        c_follows_kgram[kgram][c]++;
     }
 }
 

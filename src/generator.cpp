@@ -23,7 +23,7 @@ void Generator::generate()
     vector<string> kgrams;
     vector<double> weights;
 
-    for (const auto pair : w_counts)  // make pairs of kgrams and their weight
+    for (const auto& pair : w_counts)  // make pairs of kgrams and their weight
     {
         kgrams.push_back(pair.first);
         weights.push_back(static_cast<double>(pair.second));
@@ -38,6 +38,8 @@ void Generator::generate()
 
     cout << current_w; // Output w
 
+    vector<char> current_w_vec(current_w.begin(), current_w.end()); // Turn kgram to vector<char>
+
     int characters_printed = current_w.length();
 
 
@@ -46,6 +48,8 @@ void Generator::generate()
 
     while (characters_printed < output_chars)
     {
+        string current_w_str(current_w_vec.begin(), current_w_vec.end()); //turn kgram vector<char> to string, for probability func
+
         vector<double> char_probs;
         double probability_sum = 0.0;
 
@@ -67,7 +71,8 @@ void Generator::generate()
 
         cout << next_char; // Output c
 
-        current_w = current_w.substr(1) + next_char; // Set new w with the sampled character c
+        current_w_vec.erase(current_w_vec.begin()); // Set new w with the sampled character c
+        current_w_vec.push_back(next_char);
 
         characters_printed++;
     }
