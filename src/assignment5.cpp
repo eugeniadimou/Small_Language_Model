@@ -35,6 +35,13 @@ int main (int argc, char* argv[])
         return 1;
     }
 
+    
+    if (k > output_chars) 
+    {
+        cerr << "k cannot be grater than the number of output characters!" << endl;
+        return 1;
+    }
+
     Reader reader(k);
     reader.read_the_file(filename);
 
